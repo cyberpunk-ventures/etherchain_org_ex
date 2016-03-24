@@ -50,21 +50,21 @@ defmodule EtherchainOrg do
   @doc """
   https://etherchain.org/documentation/api/#api-Accounts-GetAccountIdTxOffset
   Returns a list of transactions maps with the schema matching the following example:
-    {
-         "hash": "0xa04966d391d6e3499ab1cab91b1db7723567025a3b64bace7eceec98403241c4",
-         "sender": "0xb794f5ea0ba39494ce839613fffba74279579268",
-         "recipient": "0x32be343b94f860124dc4fee278fdcbd38c102d88",
-         "accountNonce": "33",
-         "price": 60000000000,
-         "gasLimit": 21000,
-         "amount": 5e+22,
-         "block_id": 1201932,
-         "time": "2016-03-23T10:48:37.000Z",
-         "newContract": 0,
-         "isContractTx": null,
-         "blockHash": "0xc4724a224a90aa843f0c06f5f66b69262fb9eab0d81bc3a101ae9f66f7fe4b52",
-         "parentHash": "0xa04966d391d6e3499ab1cab91b1db7723567025a3b64bace7eceec98403241c4",
-         "txIndex": null
+    %{
+         hash: "0xa04966d391d6e3499ab1cab91b1db7723567025a3b64bace7eceec98403241c4",
+         sender: "0xb794f5ea0ba39494ce839613fffba74279579268",
+         recipient: "0x32be343b94f860124dc4fee278fdcbd38c102d88",
+         accountNonce: "33",
+         price: 60000000000,
+         gasLimit: 21000,
+         amount: 5e+22,
+         block_id: 1201932,
+         time: "2016-03-23T10:48:37.000Z",
+         newContract: 0,
+         isContractTx: null,
+         blockHash: "0xc4724a224a90aa843f0c06f5f66b69262fb9eab0d81bc3a101ae9f66f7fe4b52",
+         parentHash: "0xa04966d391d6e3499ab1cab91b1db7723567025a3b64bace7eceec98403241c4",
+         txIndex: null
      }
   """
   def account_tx(id, offset) when is_integer(offset) and is_bitstring(id) do
