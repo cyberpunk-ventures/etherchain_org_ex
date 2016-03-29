@@ -15,16 +15,17 @@ defmodule EtherchainOrg do
 
   def supply do
     {:ok, res} = EtherchainOrg.get("/supply")
-    res.body
+    supply = res.body
     |> Poison.Parser.parse!
     |> Map.get("data")
     |> hd
     |> Map.get("supply")
+    {:ok, supply}
   end
 
   def supply(rounded: true) do
-    supply
-    |> round
+    {:ok, supply_float} = supply
+    {:ok, round(supply_float)} 
   end
 
   @doc """
@@ -42,9 +43,10 @@ defmodule EtherchainOrg do
   def account(id) do
     {:ok, response} = EtherchainOrg.get("/account/" <> id)
     %{"data" => data} = response.body |> Poison.Parser.parse!
-    data
+    result = data
     |> hd
     |> convert_string_keys_to_atom
+    {:ok, result}
   end
 
   @doc """
@@ -69,9 +71,9 @@ defmodule EtherchainOrg do
   """
   def account_tx(id, offset) when is_integer(offset) and is_bitstring(id) do
     {:ok, response} = EtherchainOrg.get "/account/#{id}/tx/#{offset}"
-    %{"data" => data} = response.body |> Poison.Parser.parse!
-    data
-    |> Enum.map(&convert_string_keys_to_atom/1)
+    %{"data" => data} = Poison.Parser.parse!(response.body)
+    txs = Enum.map(data, &convert_string_keys_to_atom/1)
+    {:ok, txs}
   end
 
   defp convert_string_keys_to_atom(m) do
