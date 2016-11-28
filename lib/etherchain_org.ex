@@ -25,7 +25,7 @@ defmodule EtherchainOrg do
 
   def supply(rounded: true) do
     {:ok, supply_float} = supply
-    {:ok, round(supply_float)} 
+    {:ok, round(supply_float)}
   end
 
   @doc """

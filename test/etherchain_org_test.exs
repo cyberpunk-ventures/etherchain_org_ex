@@ -20,4 +20,6 @@ defmodule EtherchainOrgTest do
     account_data = response  |> hd |> Map.to_list
     assert assert Vex.valid? account_data, hash: [presence: true], sender: [presence: true], recipient: [presence: true]
   end
+
+  
 end
